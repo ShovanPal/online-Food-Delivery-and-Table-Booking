@@ -81,7 +81,10 @@ DATABASES = {
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': '',
-        'PORT': '3306' 
+        'PORT': '3306',
+        "OPTIONS": {
+                    "init_command": "SET default_storage_engine=INNODB",
+                } 
     }
 }
 
