@@ -81,7 +81,10 @@ DATABASES = {
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': '',
-        'PORT': '3306'
+        'PORT': '3306',
+        "OPTIONS": {
+                    "init_command": "SET default_storage_engine=INNODB",
+                } 
     }
 }
 
@@ -121,6 +124,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
