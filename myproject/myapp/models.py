@@ -1,13 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 # Create your models here.
 
 TYPES_CHOICE=(
     ('Veg', 'Veg'),('Non-veg','Non-veg')
 );
-from django.contrib.auth.models import AbstractUser, Group, Permission
-from django.db import models
-
 class CustomUser(AbstractUser):
     mobile = models.CharField(max_length=15)
     address = models.CharField(max_length=250)
@@ -21,8 +18,10 @@ class Menu(models.Model):
     menu_catagory=models.CharField(max_length=10, 
                                    choices=TYPES_CHOICE,
                                    default='Veg')
-    def _str_(self):
-        return self.menu_name+'['+self.menu_catagory+']'
+    def __str__(self):  # Use double underscores
+        return self.menu_name + '[' + self.menu_catagory + ']'
+    class Meta:
+        verbose_name_plural = "Menu"
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
