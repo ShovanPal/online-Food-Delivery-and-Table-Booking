@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 # Create your models here.
 
 TYPES_CHOICE=(
-    ('Veg', 'Veg'),('Non-veg','Non-veg')
+    ('Veg', 'Veg'),('Non-veg','Non-veg'),('Drinks','Drinks')
 );
 class CustomUser(AbstractUser):
     mobile = models.CharField(max_length=15)
