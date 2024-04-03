@@ -29,3 +29,6 @@ def login(request):
 
 def register(request):
     return render (request, 'myapp/register.html')
+    
+def about(request):
+    return render (request, 'myapp/about.html')
