@@ -1,205 +1,122 @@
 {% load static %}
-<!doctype html>
-    <html lang="en">
-    <head>
-        
-        <head>
-            <!-- Basic -->
-            <meta charset="utf-8" />
-            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-            <!-- Mobile Metas -->
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-            <!-- Site Metas -->
-            <meta name="keywords" content="" />
-            <meta name="description" content="" />
-            <meta name="author" content="" />
-            <link rel="shortcut icon" href="{% static 'myapp/images/favicon.png'%}" type="">
-          
-            <title> Feane </title>
-          
-            <!-- bootstrap core css -->
-            <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/bootstrap.css' %}" />
-          
-            <!--owl slider stylesheet -->
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-            <!-- nice select  -->
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
-            <!-- font awesome style -->
-            <link href="css/font-awesome.min.css" rel="stylesheet" />
-          
-            <!-- Custom styles for this template -->
-            <link href=" {% static 'myapp/css/style.css' %} " rel="stylesheet" />
-            <!-- responsive style -->
-            <link href="{% static 'myapp/css/responsive.css' %}" rel="stylesheet" />
-          
-          </head>
-          
-          <body>
-          
-            
-              <!-- header section strats -->
-              
-              <header class="header_section">
-                <div class="container">
-                  <nav class="navbar navbar-dark bg-secondary navbar-expand-lg custom_nav-container ">
-                    <a class="navbar-brand" href="{% url 'home-page' %}">
-                      <span>
-                        Feane
-                      </span>
-                    </a>
-          
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class=""> </span>
-                    </button>
-          
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                      <ul class="navbar-nav  mx-auto ">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="shortcut icon" href="{% static 'myapp/login/assets/images/fav.png' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'myapp/login/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/style.css' %}" />
+</head>
+
+<body class="bg-white">
+    <header class="header_section">
+        <div class="container">
+            <nav class="navbar navbar-dark bg-secondary navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="{% url 'home-page' %}">
+                    <span>Feane</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class=""> </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav  mx-auto ">
                         <li class="nav-item active">
-                          <a class="nav-link" href="{% url 'home-page' %}">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{% url 'home-page' %}">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="{% url 'menu-page' %}">Menu</a>
+                            <a class="nav-link" href="{% url 'menu-page' %}">Menu</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="{% url 'about-page' %}">About</a>
+                            <a class="nav-link" href="{% url 'about-page' %}">About</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="{% url 'book-page' %}">Book Table</a>
+                            <a class="nav-link" href="{% url 'book-page' %}">Book Table</a>
                         </li>
-                      </ul>
-                      <div class="user_option">
+                    </ul>
+                    <div class="user_option">
                         <a href="" class="user_link">
-                          <i class="fa fa-user" aria-hidden="true"></i>
+                            <i class="fa fa-user" aria-hidden="true"></i>
                         </a>
                         <a class="cart_link" href="{% url 'cart-page' %}">
-                          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
-                            <g>
-                              <g>
-                                <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                             c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                              </g>
-                            </g>
-                            <g>
-                              <g>
-                                <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                             C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                             c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                             C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                              </g>
-                            </g>
-                            <g>
-                              <g>
-                                <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                             c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                              </g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                          </svg>
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                                <!-- Your SVG code -->
+                            </svg>
                         </a>
                         <form class="form-inline">
-                          <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                          </button>
+                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
                         </form>
-                        <a href="{% url 'login-page' %}" class="log-in">
-                          Log In
+                        <a href="{% url 'register-page' %}" class="log-in">
+                            Register
                         </a>
-                      </div>
                     </div>
-                  </nav>
                 </div>
-              </header>
-              <!-- end header section -->
-              <!-- slider section -->
-              
-            </div><meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Dental Hospital Website Template | Smarteyeapps.com</title>
-        <link rel="shortcut icon" href="{% static 'myapp/login/assets/images/fav.png' %}" type="image/x-icon">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-        <link rel="shortcut icon" href="{% static 'myapp/login/assets/images/fav.jpg'%}">
-        <link rel="stylesheet" href="{% static 'myapp/login/assets/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-        <link rel="stylesheet" type="text/css" href="{% static 'myapp/login/assets/css/style.css' %}" />
-    </head>
-    <body class="bg-white">
-        <div class="container-fluid vh-100 overflow-auto">
-            <div class="row vh-100 ">
-                <div class="col-lg-6 bg-gray p-5 text-center">
-                   <h4 class="text-center fw-bolder fs-2">Register</h4>
-                   <p class="mb-3 fs-7">Welcome to the Restaurant</p>
-                   <a href="{% url 'register-page' %}">
-                       <button class="btn fw-bold mb-5 btn-outline-success px-4 rounded-pill">Sign Up</button>
-                   </a>
-                   <div class="img-cover p-4">
-                        <img src="{% static 'myapp/login/assets/images/loginbg.png' %}" alt="">
-                   </div>
-                </div>
-                <div class="col-lg-6 p  vh-100">
-                   <div class="row d-flex vh-100">
-                       <div class="col-md-8 p-4 ikigui m-auto text-center align-items-center">
-                           <h4 class="text-center fw-bolder mb-4 fs-2">Login</h4>
-                           <div class="input-group mb-4">
-                              <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-person"></i></span>
-                              <input type="text" class="form-control ps-2 border-start-0 fs-7 inbg form-control-lg mb-0" placeholder="Enter Username" aria-label="Username" aria-describedby="basic-addon1">
-                           </div>
-                           <div class="input-group mb-4">
-                              <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-lock"></i></span>
-                              <input type="password" class="form-control ps-2 fs-7 border-start-0 form-control-lg inbg mb-0" placeholder="Enter Password" aria-label="Username" aria-describedby="basic-addon1">
-                           </div>
-                           
-                           <button class="btn btn-lg fw-bold fs-7 btn-success  w-100">Login</button>
-                           
-                           <p class="text-center py-4 fw-bold fs-8">Or Sign in with social platforms</p>
-                           
-                           <ul class="d-inline-block mx-auto">
-                               <li class="float-start px-3"><a href=""><i class="bi bi-facebook"></i></a></li>
-                               <li class="float-start px-3"><a href=""><i class="bi bi-twitter"></i></a></li>
-                               <li class="float-start px-3"><a href=""><i class="bi bi-linkedin"></i></a></li>
-                               <li class="float-start px-3"><a href=""><i class="bi bi-google"></i></a></li>
-                               
-                           </ul>
-                       </div>
-                   </div>
-                    
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-fluid vh-100 overflow-auto">
+        <div class="row vh-100">
+            <div class="col-lg-6 bg-gray p-5 text-center">
+                <h4 class="text-center fw-bolder fs-2">Login</h4>
+                <p class="mb-3 fs-7">Already have an account?</p>
+                <a href="{% url 'register-page'%}">
+                    <button class="btn fw-bold mb-5 btn-outline-success px-4 rounded-pill">Register</button>
+                </a>
+                <div class="img-cover p-4">
+                    <img src="{% static 'myapp/login/assets/images/loginbg.png' %}" alt="">
                 </div>
             </div>
-        </div>  
-    </body>
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
-    <script src="assets/plugins/testimonial/js/owl.carousel.min.js"></script>
-    <script src="assets/js/script.js"></script>
+            <div class="col-lg-6 p vh-100">
+                <div class="row d-flex vh-100">
+                    <div class="col-md-8 p-4 ikigui m-auto text-center align-items-center">
+                        <h4 class="text-center fw-bolder mb-4 fs-2">Login</h4>
+                        <form method="post">
+                            {% csrf_token %}
+                            {% for field in form %}
+                            <div class="input-group mb-4">
+                                <span class="input-group-text border-end-0 inbg" id="basic-addon1">
+                                    {% if field.name == 'username' %}
+                                        <i class="bi bi-person-fill"></i>
+                                    {% elif field.name == 'password' %}
+                                        <i class="bi bi-lock-fill"></i>
+                                    {% else %}
+                                        <!-- Default icon -->
+                                        <i class="bi bi-question"></i>
+                                    {% endif %}
+                                </span>
+                                {{ field }}
+                            </div>
+                            {% endfor %}
+                            <button class="btn btn-lg fw-bold fs-7 btn-success w-100">Login</button>
+                        </form>
 
+                        <p class="text-center py-4 fw-bold fs-8">Or Sign in with social platforms</p>
+
+                        <ul class="d-inline-block mx-auto">
+                            <li class="float-start px-3"><a href=""><i class="bi bi-facebook"></i></a></li>
+                            <li class="float-start px-3"><a href=""><i class="bi bi-twitter"></i></a></li>
+                            <li class="float-start px-3"><a href=""><i class="bi bi-linkedin"></i></a></li>
+                            <li class="float-start px-3"><a href=""><i class="bi bi-google"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{% static 'myapp/login/assets/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'myapp/login/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'myapp/login/assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'myapp/login/assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js' %}"></script>
+    <script src="{% static 'myapp/login/assets/plugins/testimonial/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'myapp/login/assets/js/script.js' %}"></script>
+</body>
 </html>

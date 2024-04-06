@@ -10,8 +10,10 @@
     <link rel="shortcut icon" href="{% static 'myapp/login/assets/images/fav.jpg'%}">
     <link rel="stylesheet" href="{% static 'myapp/login/assets/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'myapp/login/assets/css/style.css' %}" />
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'myapp/login/assets/css/style.css' %}" /> {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/style.css' %}" />
 </head>
+
 <body class="bg-white">
     <header class="header_section">
         <div class="container">
@@ -127,37 +129,36 @@
                    <div class="col-md-8 p-4 ikigui m-auto text-center align-items-center">
                        <h4 class="text-center fw-bolder mb-4 fs-2">Register</h4>
                        <form method="post">
-                            {% csrf_token %}
+                        {% csrf_token %}
+                        {% for field in form %}
                             <div class="input-group mb-4">
-                                <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-person"></i></span>
-                                <input type="text" class="form-control ps-2 border-start-0 fs-7 inbg form-control-lg mb-0" name="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                <span class="input-group-text border-end-0 inbg" id="basic-addon1">
+                                    {% if field.name == 'username' %}
+                                        <i class="bi bi-person-fill"></i>
+                                    {% elif field.name == 'email' %}
+                                        <i class="bi bi-envelope-fill"></i>
+                                    {% elif field.name == 'mobile' %}
+                                        <i class="bi bi-phone-fill"></i>
+                                    {% elif field.name == 'password1' or field.name == 'password2' %}
+                                        <i class="bi bi-lock-fill"></i>
+                                    {% elif field.name == 'first_name' %}
+                                        <i class="bi bi-person-badge-fill"></i>
+                                    {% elif field.name == 'last_name' %}
+                                        <i class="bi bi-person-badge-fill"></i>
+                                    {% elif field.name == 'address' %}
+                                        <i class="bi bi-house-door-fill"></i>
+                                    {% else %}
+                                        <!-- Default icon -->
+                                        <i class="bi bi-question"></i>
+                                    {% endif %}
+                                </span>
+                                {{ field }}
                             </div>
-                            <div class="input-group mb-4">
-                                <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-person"></i></span>
-                                <input type="text" class="form-control ps-2 border-start-0 fs-7 inbg form-control-lg mb-0" name="first_name" placeholder="First Name" aria-label="First Name" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-4">
-                                <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-person"></i></span>
-                                <input type="text" class="form-control ps-2 border-start-0 fs-7 inbg form-control-lg mb-0" name="last_name" placeholder="Last Name" aria-label="Last Name" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-4">
-                                <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-envelope"></i></span>
-                                <input type="text" class="form-control ps-2 border-start-0 fs-7 inbg form-control-lg mb-0" name="email" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-4">
-                                <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-phone"></i></span>
-                                <input type="text" class="form-control ps-2 border-start-0 fs-7 inbg form-control-lg mb-0" name="mobile" placeholder="Mobile Number" aria-label="Mobile Number" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-4">
-                                <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-lock"></i></span>
-                                <input type="password" class="form-control ps-2 fs-7 border-start-0 form-control-lg inbg mb-0" name="password1" placeholder="Enter Password" aria-label="Password" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group mb-4">
-                                <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-lock"></i></span>
-                                <input type="password" class="form-control ps-2 fs-7 border-start-0 form-control-lg inbg mb-0" name="password2" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1">
-                            </div>
-                            <button class="btn btn-lg fw-bold fs-7 btn-success  w-100">Register</button>
-                        </form>
+                        {% endfor %}
+                        <button class="btn btn-lg fw-bold fs-7 btn-success w-100">Register</button>
+                    </form>
+                    
+                    
                        
                        <p class="text-center py-4 fw-bold fs-8">Or Sign in with social platforms</p>
                        
