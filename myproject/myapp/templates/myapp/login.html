@@ -12,55 +12,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/style.css' %}" />
 </head>
 
-<body class="bg-white">
-    <header class="header_section">
-        <div class="container">
-            <nav class="navbar navbar-dark bg-secondary navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="{% url 'home-page' %}">
-                    <span>Feane</span>
-                </a>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class=""> </span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav  mx-auto ">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'home-page' %}">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'menu-page' %}">Menu</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'about-page' %}">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'book-page' %}">Book Table</a>
-                        </li>
-                    </ul>
-                    <div class="user_option">
-                        <a href="" class="user_link">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </a>
-                        <a class="cart_link" href="{% url 'cart-page' %}">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
-                                <!-- Your SVG code -->
-                            </svg>
-                        </a>
-                        <form class="form-inline">
-                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                        </form>
-                        <a href="{% url 'register-page' %}" class="log-in">
-                            Register
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
+<body class="bg-light">
+    {% include './navbar.html' %}
 
     <div class="container-fluid vh-100 overflow-auto">
         <div class="row vh-100">
@@ -98,14 +51,6 @@
                             <button class="btn btn-lg fw-bold fs-7 btn-success w-100">Login</button>
                         </form>
 
-                        <p class="text-center py-4 fw-bold fs-8">Or Sign in with social platforms</p>
-
-                        <ul class="d-inline-block mx-auto">
-                            <li class="float-start px-3"><a href=""><i class="bi bi-facebook"></i></a></li>
-                            <li class="float-start px-3"><a href=""><i class="bi bi-twitter"></i></a></li>
-                            <li class="float-start px-3"><a href=""><i class="bi bi-linkedin"></i></a></li>
-                            <li class="float-start px-3"><a href=""><i class="bi bi-google"></i></a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
