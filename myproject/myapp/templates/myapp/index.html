@@ -297,7 +297,6 @@
         {% endfor %}
     </ul>
     
-
     <div class="filters-content">
       <div class="row grid">
           {% for menu in allMenu %}
@@ -313,8 +312,10 @@
                                   <p>{{ item.description }}</p>
                                   <div class="options">
                                       <h6>Rs. {{ item.price|floatformat:0 }} /- only</h6>
-                                      <a href="/add_to_cart/{{item.id}}"><button type="button">Add to Cart</button></a>
-
+                                      <!-- Use a styled button to add to cart -->
+                                      <button class="btn btn-primary add-to-cart-btn" data-item-id="{{ item.id }}">
+                                          <i class="fas fa-cart-plus"></i> Add to Cart
+                                      </button>
                                   </div>
                               </div>
                           </div>
@@ -324,6 +325,33 @@
           {% endfor %}
       </div>
   </div>
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Click event handler for the add to cart images
+        $(".add-to-cart").click(function() {
+            // Get the item ID from the data-item-id attribute
+            var itemId = $(this).data("item-id");
+            // Make an AJAX request to add the item to the cart
+            $.ajax({
+                type: "GET", // or POST depending on your implementation
+                url: "/add_to_cart/" + itemId + "/", // adjust the URL according to your backend implementation
+                success: function(response) {
+                    // Handle the success response, e.g., show a confirmation message
+                    alert("Item added to cart!");
+                },
+                error: function(xhr, status, error) {
+                    // Handle the error, e.g., show an error message
+                    alert("Failed to add item to cart. Error: " + error);
+                }
+            });
+        });
+    });
+</script>
+
+  
   
       <div class="btn-box">
         <a href="">

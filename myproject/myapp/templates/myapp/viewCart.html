@@ -1,4 +1,5 @@
 {% load mathfilters %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,51 +7,197 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="Description" content="Enter your description here"/>
+<link rel="shortcut icon" href="{% static 'myapp/login/assets/images/fav.png' %}" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'myapp/login/assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="{% static 'myapp/css/style.css' %}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <title>All Cart</title>
+<style>
+    .product-image {
+        width: 100px;
+    }
+    .product-name {
+        max-width: 200px;
+    }
+    .product-price, .product-quantity, .product-total {
+        width: 100px;
+    }
+    .custom_nav-container {
+        background-color: black;
+    }
+    .navbar {
+        margin: 0;
+        padding: 0;
+    }
+    .header_section {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h2 class="text-center">My Cart</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <thead>
-                {% for item in cart_items %}
-                <tr>
-                    <td>{{item.item}}
-                    <a href="/remove/{{item.id}}/" class="btn btn-danger">Remove</a></td>
-                    <td>{{item.quantity}}</td>
-                    <td>&#8377;{{item.item.price}}</td>
-                    <td>{{ item.quantity | mul:item.item.price}}</td>
-                </tr>
-                {% endfor %}
-                <tr>
-                    <td colspan="3" class="text-right">Grand Total</td>
-                    <td>&#8377;{{total_price}}</td>
-                </tr>
-            </thead>
-        </table>
-        <form id="payment-form">
-            {% csrf_token %}
-            <textarea name="address" id="address" cols="30", rows="3" class="form-control" placeholder="Enter Delivery Address"></textarea>
-            <input type="hidden" id="amount" name="amount" value="{{ total_price }}">
-            <button type="button" id="pay-button" class="btn btn-primary">Pay Now</button>
-        </form>
+    <!-- header section starts -->
+    {% with request.resolver_match.url_name as url_name %}
+    <header class="header_section">
+        <div>
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="{% url 'home-page' %}">
+                    <span>Feane</span>
+                </a>
+    
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav  mx-auto ">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'home-page' %}">Home <span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'menu-page' %}">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about-page' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'book-page' %}">Book Table</a>
+                        </li>
+                    </ul>
+                    <div class="user_option">
+                        {% if request.user.is_authenticated %}
+                        <span class="username" style="color: #fff;">Hi! {{ request.user.first_name }}</span>
+                        <a href="{% url 'logout-page' %}" class="log-out">Log Out</a>
+                        {% else %}
+                        <a href="{% url 'login-page' %}" class="log-in">Log In</a>
+                        {% endif %}
+                        <a class="cart_link" href="{% url 'cart-page' %}">
+                            <img src="{% static 'myapp/images/symbol.png' %}" alt="Cart Symbol" width="30" height="30">
+                        </a>
+                        <form class="form-inline">
+                            <!-- SVG search icon -->
+                            <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    {% endwith %}
+    <!-- header section ends -->
+    
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">My Cart</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                    <tr>
+                        <td class="align-middle">
+                            <div class="d-flex align-items-center">
+                                <div class="product-image mr-3">
+                                    <img src="{{ item.item.image.url }}" alt="{{ item.item.name }}" class="img-fluid">
+                                </div>
+                                <div class="product-details">
+                                    <h5 class="product-name mb-0">{{ item.item.name }}</h5>
+                                    <p class="text-muted">{{ item.item.description }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <input type="number" class="form-control quantity-input" value="{{ item.quantity }}" min="1" data-price="{{ item.item.price }}">
+                        </td>
+                        <td class="align-middle product-price">&#8377;{{ item.item.price }}</td>
+                        <td class="align-middle product-total">&#8377;<span class="total-price">{{ item.quantity | mul:item.item.price }}</span></td>
+                        <td class="align-middle">
+                            <a href="/remove/{{ item.id }}/" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Remove</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
+                        <td colspan="2" class="font-weight-bold" id="subtotal">&#8377; 0.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right"><strong>Taxes (18%)</strong></td>
+                        <td colspan="2" class="font-weight-bold" id="taxes">&#8377; 0.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right"><strong>Grand Total</strong></td>
+                        <td colspan="2" class="font-weight-bold" id="grand-total">&#8377; 0.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-md-4">
+                <form id="payment-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="address">Delivery Address</label>
+                        <textarea name="address" id="address" class="form-control" rows="3" placeholder="Enter Delivery Address"></textarea>
+                    </div>
+                    <input type="hidden" id="amount" name="amount" value="{{ total_price }}">
+                    <button type="button" id="pay-button" class="btn btn-primary btn-block">Pay Now</button>
+                </form>
+            </div>
+        </div>
     </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function() {
+        // Calculate subtotal, taxes, and grand total when the page loads
+        calculateSubtotalAndGrandTotal();
+
+        $(".quantity-input").change(function() {
+            var quantity = $(this).val();
+            var price = $(this).data("price");
+            var total = quantity * price;
+            $(this).closest("tr").find(".product-total").html('&#8377;' + total.toFixed(2));
+            calculateSubtotalAndGrandTotal();
+        });
+
+        function calculateSubtotalAndGrandTotal() {
+            var subtotal = 0;
+            $(".product-total").each(function() {
+                var total = parseFloat($(this).text().replace('₹', '').replace(',', ''));
+                if (!isNaN(total)) {
+                    subtotal += total;
+                }
+            });
+            var taxes = subtotal * 0.18;
+            var grandTotal = subtotal + taxes;
+            grandTotal = Math.round(grandTotal * 100) / 100; // Rounding off to two decimal places
+            $("#subtotal").text('₹ ' + subtotal.toFixed(2));
+            $("#taxes").text('₹ ' + taxes.toFixed(2));
+            $("#grand-total").text('₹ ' + grandTotal.toFixed(2));
+            $("#amount").val(grandTotal.toFixed(2)); // This sets the value for payment
+        }
+
         $("#pay-button").click(function(e) {
             e.preventDefault(); // Prevent the default form submission
             
