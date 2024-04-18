@@ -11,5 +11,7 @@ urlpatterns = [
     path('menu',views.menu,name='menu-page'),
     path('about',views.about,name='about-page'),
     path('logout/', views.user_logout, name='logout-page'),
+    path('add_to_cart/<int:p_id>/', views.add_to_cart, name='adddcart-page'),
+    path('remove/<int:id>/', views.remove_cart, name='remcart-page'),
 
 ]

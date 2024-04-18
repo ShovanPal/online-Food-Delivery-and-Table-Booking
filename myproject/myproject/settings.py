@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'food_delivery',
+        'NAME': 'food_delivery1',
         'HOST': 'localhost',
         'USER': 'root',
         'PASSWORD': '',
@@ -139,3 +140,5 @@ EMAIL_HOST_PASSWORD = 'nqjh jgcq jces hszn'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+AUTH_USER_MODEL='myapp.CustomUser'

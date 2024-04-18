@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from . models import Menu,Item
+from . models import Menu,Item,CartItem, CustomUser
 from . forms import RegistrationForm,MyLogFrm
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -22,8 +22,33 @@ def index(request):
         menu_items[menu] = items
     return render(request, 'myapp/index.html', {'allMenu':allMenu, 'menu_items': menu_items})
 
+def add_to_cart(request, p_id):
+    if request.user.is_authenticated:
+        product = Item.objects.get(id=p_id)
+        # print(product)
+        cart_item, created = CartItem.objects.get_or_create(item=product, user=request.user)
+        cart_item.quantity += 1
+        cart_item.save()
+        return redirect('/cart')
+    else:
+        return redirect('/login')
+
 def cart(request):
-    return render (request, 'myapp/cart.html')
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user)
+        total_price = sum(i.item.price * i.quantity for i in cart_items)
+        total_price = int(total_price)
+        return render(request, 'myapp/viewCart.html', {'cart_items': cart_items, 'total_price': total_price})
+    else:
+        return redirect('/login')
+    
+def remove_cart(request, id):
+    if request.user.is_authenticated:
+        cart_item = CartItem.objects.get(id=id, user=request.user)
+        cart_item.delete()
+        return redirect('/cart')
+    else:
+        return redirect('/login')
 
 def menu(request):
     allMenu=Menu.objects.all().order_by('menu_name')
@@ -58,17 +83,17 @@ def user_logout(request):
 def userReg(request):
     if request.method == "POST":
         username = request.POST["username"]
-        fname = request.POST["fname"]
-        lname = request.POST["lname"]
+        first_name = request.POST["fname"]
+        last_name = request.POST["lname"]
         email = request.POST["email"]
         pass1 = request.POST["pass1"]
         pass2 = request.POST["pass2"]
 
-        if User.objects.filter(username=username):
+        if CustomUser.objects.filter(username=username):
             messages.error(request, "Username already exist! Please try some other username.")
             return redirect('/register')
         
-        if User.objects.filter(email=email).exists():
+        if CustomUser.objects.filter(email=email).exists():
             messages.error(request, "Email Already Registered!!")
             return redirect('/register')
         
@@ -84,17 +109,17 @@ def userReg(request):
             messages.error(request, "Username must be Alpha-Numeric!!")
             return redirect('/register')
         
-        myuser = User.objects.create_user(username, email, pass1)
-        myuser.fname = fname
-        myuser.lname = lname
+        myuser = CustomUser.objects.create_user(username, email, pass1)
+        myuser.first_name = first_name
+        myuser.last_name = last_name
         # myuser.is_active = False
         myuser.is_active = False
         myuser.save()
         messages.success(request, "Your Account has been created succesfully!! Please check your email to confirm your email address in order to activate your account.")
         
         # Welcome Email
-        subject = "Welcome to Saumitra's Django Website Login!!"
-        message = "Hello " + myuser.first_name + "!! \n" + "Welcome to Saumitra's Django Website!! \nThank you for visiting our website\n. We have also sent you a confirmation email, please confirm your email address. \n\nThanking You"        
+        subject = "Welcome to Our Feane"
+        message = "Hello " + myuser.first_name + "!! \n" + "Welcome to Our Feane!! \nThank you for visiting our website\n. We have also sent you a confirmation email, please confirm your email address. \n\nThanking You"        
         from_email = settings.EMAIL_HOST_USER
         to_list = [myuser.email]
         send_mail(subject, message, from_email, to_list, fail_silently=True)
@@ -126,7 +151,7 @@ def userReg(request):
 def activate(request,uidb64,token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
-        myuser = User.objects.get(pk=uid)
+        myuser = CustomUser.objects.get(pk=uid)
     except (TypeError,ValueError,OverflowError,User.DoesNotExist):
         myuser = None
 

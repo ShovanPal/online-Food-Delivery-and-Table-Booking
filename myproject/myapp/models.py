@@ -30,7 +30,7 @@ class Item(models.Model):
     image = models.ImageField(upload_to='item_image/')
     menu=models.ForeignKey(Menu,on_delete=models.CASCADE)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
     
 class CartItem(models.Model):
@@ -39,5 +39,5 @@ class CartItem(models.Model):
 	user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 	date_added = models.DateTimeField(auto_now_add=True)
 
-	def _str_(self):
+	def __str__(self):
 		return f'{self.quantity} x {self.item.name}'
