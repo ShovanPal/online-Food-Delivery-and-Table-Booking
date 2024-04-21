@@ -137,16 +137,8 @@
                     </tr>
                     {% endfor %}
                     <tr>
-                        <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
-                        <td colspan="2" class="font-weight-bold" id="subtotal">&#8377; 0.00</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="text-right"><strong>Taxes (18%)</strong></td>
-                        <td colspan="2" class="font-weight-bold" id="taxes">&#8377; 0.00</td>
-                    </tr>
-                    <tr>
                         <td colspan="3" class="text-right"><strong>Grand Total</strong></td>
-                        <td colspan="2" class="font-weight-bold" id="grand-total">&#8377; 0.00</td>
+                        <td colspan="2" class="font-weight-bold" id="grand-total">&#8377; <span id="grand-total-value">0.00</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -170,33 +162,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Calculate subtotal, taxes, and grand total when the page loads
-        calculateSubtotalAndGrandTotal();
-
-        $(".quantity-input").change(function() {
-            var quantity = $(this).val();
-            var price = $(this).data("price");
-            var total = quantity * price;
-            $(this).closest("tr").find(".product-total").html('&#8377;' + total.toFixed(2));
-            calculateSubtotalAndGrandTotal();
-        });
-
-        function calculateSubtotalAndGrandTotal() {
-            var subtotal = 0;
-            $(".product-total").each(function() {
-                var total = parseFloat($(this).text().replace('₹', '').replace(',', ''));
-                if (!isNaN(total)) {
-                    subtotal += total;
-                }
+        // Function to update grand total
+        function updateGrandTotal() {
+            var grandTotal = 0;
+            $('.product-total').each(function() {
+                grandTotal += parseFloat($(this).text().replace('₹', ''));
             });
-            var taxes = subtotal * 0.18;
-            var grandTotal = subtotal + taxes;
-            grandTotal = Math.round(grandTotal * 100) / 100; // Rounding off to two decimal places
-            $("#subtotal").text('₹ ' + subtotal.toFixed(2));
-            $("#taxes").text('₹ ' + taxes.toFixed(2));
-            $("#grand-total").text('₹ ' + grandTotal.toFixed(2));
-            $("#amount").val(grandTotal.toFixed(2)); // This sets the value for payment
+            $('#grand-total-value').text(grandTotal.toFixed(2));
         }
+
+        // Call the function initially
+        updateGrandTotal();
+
+        // Update grand total when quantity changes
+        $('.quantity-input').on('change', function() {
+            var quantity = $(this).val();
+            var price = $(this).data('price');
+            var total = quantity * price;
+            $(this).closest('tr').find('.product-total').text('₹' + total.toFixed(2));
+            updateGrandTotal();
+        });
 
         $("#pay-button").click(function(e) {
             e.preventDefault(); // Prevent the default form submission
@@ -251,3 +236,4 @@
 </script>
 </body>
 </html>
+

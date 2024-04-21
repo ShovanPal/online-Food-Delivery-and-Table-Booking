@@ -196,7 +196,7 @@ def initiate_payment(request):
             "key": settings.RAZORPAY_API_KEY,
             "name": "Feane",
             "description": "Payment for Your Product",
-            "image": "myapp/images/vsk.png",
+            "image": "",
         }
         cart_items=CartItem.objects.filter(user=request.user)
         # payment_id=response_data.id
