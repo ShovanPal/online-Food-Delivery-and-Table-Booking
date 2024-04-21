@@ -1,5 +1,4 @@
-{% load static %}
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,113 +6,124 @@
     <title>Register</title>
     <link rel="shortcut icon" href="{% static 'myapp/login/assets/images/fav.png' %}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="{% static 'myapp/login/assets/images/fav.jpg'%}">
     <link rel="stylesheet" href="{% static 'myapp/login/assets/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'myapp/login/assets/css/style.css' %}" /> {% endcomment %}
     <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/style.css' %}" />
+    <style>
+      .custom_nav-container {
+          background-color: black;
+      }
+      .navbar {
+          margin: 0;
+          padding: 0;
+      }
+      .header_section {
+          margin: 0;
+          padding: 0;
+      }
+      body {
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+      }
+      
+      .bg-image {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          object-fit: cover;
+          z-index: -1; /* Ensure the image is behind the content */
+      }
+      
+      /* Styling for form fields */
+      .form-group {
+          margin-bottom: 20px;
+      }
+      .form-group label {
+          font-weight: bold;
+      }
+      .form-group input[type="text"],
+      .form-group input[type="email"],
+      .form-group input[type="password"],
+      .form-group input[type="tel"] {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ced4da;
+          border-radius: 5px;
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      }
+      .form-group input[type="text"]:focus,
+      .form-group input[type="email"]:focus,
+      .form-group input[type="password"]:focus,
+      .form-group input[type="tel"]:focus {
+          border-color: #4d90fe;
+          outline: 0;
+          box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      }
+  </style>
+
 </head>
 
 <body class="bg-light">
+
+<!-- Your registration form HTML code here -->
+
+    <!-- header section starts -->
+    {% with request.resolver_match.url_name as url_name %}
     <header class="header_section">
-        <div class="container">
-          <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="{% url 'home-page' %}">
-              <span>
-                Feane
-              </span>
-            </a>
-  
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class=""> </span>
-            </button>
-  
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav  mx-auto ">
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'home-page' %}">Home <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'menu-page' %}">Menu</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'about-page' %}">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'book-page' %}">Book Table</a>
-                </li>
-              </ul>
-              <div class="user_option">
-                <a href="" class="user_link">
-                  <i class="fa fa-user" aria-hidden="true"></i>
+        <div>
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="{% url 'home-page' %}">
+                    <span>Feane</span>
                 </a>
-                <a class="cart_link" href="{% url 'cart-page' %}">
-                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
-                    <g>
-                      <g>
-                        <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                     c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                      </g>
-                    </g>
-                    <g>
-                      <g>
-                        <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                     C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                     c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                     C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                      </g>
-                    </g>
-                    <g>
-                      <g>
-                        <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                     c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                      </g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                  </svg>
-                </a>
-                {% comment %} <form class="form-inline">
-                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </button>
-                </form>
-                <a href="{% url 'login-page' %}" class="log-in">
-                  Log In
-                </a> {% endcomment %}
-              </div>
-            </div>
-          </nav>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav  mx-auto ">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'home-page' %}">Home <span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'menu-page' %}">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about-page' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'book-page' %}">Book Table</a>
+                        </li>
+                    </ul>
+                    <div class="user_option">
+                        {% if request.user.is_authenticated %}
+                        <span class="username" style="color: #fff;">Hi! {{ request.user.first_name }}</span>
+                        <a href="{% url 'logout-page' %}" class="log-out">Log Out</a>
+                        {% else %}
+                        <a href="{% url 'login-page' %}" class="log-in">Log In</a>
+                        {% endif %}
+                        <a class="cart_link" href="{% url 'cart-page' %}">
+                            <img src="{% static 'myapp/images/symbol.png' %}" alt="Cart Symbol" width="30" height="30">
+                        </a>
+                        <form class="form-inline">
+                            <!-- SVG search icon -->
+                            <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
         </div>
-      </header>
+    </header>
+    {% endwith %}
+    <!-- header section ends -->
+
     <div class="container-fluid vh-100 overflow-auto">
         <div class="row vh-100">
             <div class="col-lg-6 bg-gray p-5 text-center">
@@ -129,76 +139,47 @@
                    <div class="col-md-8 p-4 ikigui m-auto text-center align-items-center">
                        <h4 class="text-center fw-bolder mb-4 fs-2">Register</h4>
                        <form method="post">
-                        {% comment %} {% csrf_token %}
-                        {% for field in form %}
-                            <div class="input-group mb-4">
-                                <span class="input-group-text border-end-0 inbg" id="basic-addon1">
-                                    {% if field.name == 'username' %}
-                                        <i class="bi bi-person-fill"></i>
-                                    {% elif field.name == 'email' %}
-                                        <i class="bi bi-envelope-fill"></i>
-                                    {% elif field.name == 'mobile' %}
-                                        <i class="bi bi-phone-fill"></i>
-                                    {% elif field.name == 'password1' or field.name == 'password2' %}
-                                        <i class="bi bi-lock-fill"></i>
-                                    {% elif field.name == 'first_name' %}
-                                        <i class="bi bi-person-badge-fill"></i>
-                                    {% elif field.name == 'last_name' %}
-                                        <i class="bi bi-person-badge-fill"></i>
-                                    {% elif field.name == 'address' %}
-                                        <i class="bi bi-house-door-fill"></i>
-                                    {% else %}
-                                        <!-- Default icon -->
-                                        <i class="bi bi-question"></i>
-                                    {% endif %}
-                                </span>
-                                {{ field }}
-                            </div>
-                        {% endfor %} {% endcomment %}
-                        <form method="post">{% csrf_token %}
-            
-                          <div class="form-group">
-                              <label for="username">Username</label>
-                              <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
-                          </div>
-                          <div class="form-group">
-                              <label for="fname">First Name</label>
-                              <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required>
-                          </div>
-                          <div class="form-group">
-                              <label for="lname">Last Name</label>
-                              <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" required>
-                          </div>
-                          <div class="form-group">
-                              <label for="email">Email</label>
-                              <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-                          </div>
-                          <div class="form-group">
-                              <label for="pass1">Password</label>
-                              <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Password" required>
-                          </div>
-                          <div class="form-group">
-                              <label for="pass2">Confirm Password</label>
-                              <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirm Your Password" required>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Sign Up</button>
-                      </form>
-                        {% comment %} <button class="btn btn-lg fw-bold fs-7 btn-success w-100">Register</button> {% endcomment %}
-                    </form>
-                    
-                    
-                       
-                       
+                           {% csrf_token %}
+                           <div class="form-group">
+                               <label for="username"><i class="bi bi-person-fill"></i> Username</label>
+                               <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                           </div>
+                           <div class="form-group">
+                               <label for="fname"><i class="bi bi-person-fill"></i> First Name</label>
+                               <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required>
+                           </div>
+                           <div class="form-group">
+                               <label for="lname"><i class="bi bi-person-fill"></i> Last Name</label>
+                               <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" required>
+                           </div>
+                           <div class="form-group">
+                               <label for="email"><i class="bi bi-envelope-fill"></i> Email</label>
+                               <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                           </div>
+                           <div class="form-group">
+                               <label for="mobile"><i class="bi bi-telephone-fill"></i> Mobile Number</label>
+                               <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" required>
+                           </div>
+                           <div class="form-group">
+                               <label for="pass1"><i class="bi bi-lock-fill"></i> Password</label>
+                               <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Password" required>
+                           </div>
+                           <div class="form-group">
+                               <label for="pass2"><i class="bi bi-lock-fill"></i> Confirm Password</label>
+                               <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirm Your Password" required>
+                           </div>
+                           <button type="submit" class="btn btn-primary">Sign Up</button>
+                       </form>
                    </div>
                </div>
             </div>
         </div>
     </div>  
+    <script src="{% static 'myapp/login/assets/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'myapp/login/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'myapp/login/assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'myapp/login/assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js' %}"></script>
+    <script src="{% static 'myapp/login/assets/plugins/testimonial/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'myapp/login/assets/js/script.js' %}"></script>
 </body>
-<script src="{% static 'myapp/login/assets/js/jquery-3.2.1.min.js' %}"></script>
-<script src="{% static 'myapp/login/assets/js/popper.min.js' %}"></script>
-<script src="{% static 'myapp/login/assets/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'myapp/login/assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js' %}"></script>
-<script src="{% static 'myapp/login/assets/plugins/testimonial/js/owl.carousel.min.js' %}"></script>
-<script src="{% static 'myapp/login/assets/js/script.js' %}"></script>
 </html>

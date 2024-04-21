@@ -13,5 +13,8 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout-page'),
     path('add_to_cart/<int:p_id>/', views.add_to_cart, name='adddcart-page'),
     path('remove/<int:id>/', views.remove_cart, name='remcart-page'),
-
+    path("initiate-payment/", views.initiate_payment, name="initiate_payment"),
+    path("payment-success/", views.payment_success, name="payment_success"),
+    path("payment-failed/", views.payment_failed, name="payment_failed"),
+    path("order/", views.viewOrders, name="order-page"),   
 ]

@@ -142,3 +142,8 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 AUTH_USER_MODEL='myapp.CustomUser'
+
+
+RAZORPAY_API_KEY = 'rzp_test_LOQW4a93WLPyup'
+RAZORPAY_API_SECRET = 'Wwj7V3dYnj7TKTrACR0Bx4zf'
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
