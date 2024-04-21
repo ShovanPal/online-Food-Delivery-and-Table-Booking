@@ -31,6 +31,18 @@
   <!-- responsive style -->
   <link href="{% static 'myapp/css/responsive.css' %}" rel="stylesheet" />
 
+  <style>
+    /* Add custom CSS to remove the box around the button */
+    .btn-primary {
+        border: none; /* Remove border */
+        background-color: transparent; /* Set background to transparent */
+        padding: 0; /* Remove padding */
+    }
+    .btn-primary img {
+        display: block; /* Ensure the image is displayed as a block element */
+    }
+</style>
+
 </head>
 
 <body>
@@ -313,10 +325,13 @@
                                   <div class="options">
                                       <h6>Rs. {{ item.price|floatformat:0 }} /- only</h6>
                                       <!-- Use a styled button to add to cart -->
-                                      <button class="btn btn-primary add-to-cart-btn" data-item-id="{{ item.id }}">
-                                          <i class="fas fa-cart-plus"></i> Add to Cart
-                                      </button>
+                                      <a href="/add_to_cart/{{item.id}}">
+                                        <button type="button" class="btn btn-primary add-to-cart-btn">
+                                          <img src="{% static 'myapp/images/cart1.png' %}" alt="Add to Cart" height="50" width="50">
+                                        </button>
+                                      </a>
                                   </div>
+                                  
                               </div>
                           </div>
                       </div>

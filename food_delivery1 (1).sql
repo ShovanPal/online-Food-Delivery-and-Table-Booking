@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2024 at 11:20 PM
+-- Generation Time: Apr 21, 2024 at 07:27 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -149,7 +149,19 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (22, '2024-04-18 21:11:16.785850', '5', 'Fried rice and Chili chicken', 1, '[{\"added\": {}}]', 7, 1),
 (23, '2024-04-18 21:14:20.390656', '6', 'Chicken Noodls and Chilli chicken', 1, '[{\"added\": {}}]', 7, 1),
 (24, '2024-04-18 21:15:29.842249', '11', 'Soft Drinks[Drinks]', 1, '[{\"added\": {}}]', 6, 1),
-(25, '2024-04-18 21:18:23.548102', '7', 'Coca Cola', 1, '[{\"added\": {}}]', 7, 1);
+(25, '2024-04-18 21:18:23.548102', '7', 'Coca Cola', 1, '[{\"added\": {}}]', 7, 1),
+(26, '2024-04-21 05:22:38.943004', '12', 'Fas[Veg]', 1, '[{\"added\": {}}]', 6, 1),
+(27, '2024-04-21 05:22:50.971136', '12', 'Fas[Veg]', 3, '', 6, 1),
+(28, '2024-04-21 05:23:14.608095', '13', 'Fast-Food[Veg]', 1, '[{\"added\": {}}]', 6, 1),
+(29, '2024-04-21 05:23:50.247789', '3', 'Vegetable Sandwich', 2, '[{\"changed\": {\"fields\": [\"Menu\"]}}]', 7, 1),
+(30, '2024-04-21 05:24:14.474918', '14', 'Fast-Food[Non-veg]', 1, '[{\"added\": {}}]', 6, 1),
+(31, '2024-04-21 05:24:38.783267', '15', 'Soft-Drinks[Drinks]', 1, '[{\"added\": {}}]', 6, 1),
+(32, '2024-04-21 05:25:26.389001', '7', 'Coca Cola', 2, '[{\"changed\": {\"fields\": [\"Menu\"]}}]', 7, 1),
+(33, '2024-04-21 05:25:42.133783', '4', 'Chicken Tikka Pizza', 2, '[{\"changed\": {\"fields\": [\"Menu\"]}}]', 7, 1),
+(34, '2024-04-21 05:25:53.635221', '2', 'Chicken Burger', 2, '[{\"changed\": {\"fields\": [\"Menu\"]}}]', 7, 1),
+(35, '2024-04-21 05:26:09.648515', '11', 'Soft Drinks[Drinks]', 3, '', 6, 1),
+(36, '2024-04-21 05:26:09.701861', '10', 'Fast Food[Veg]', 3, '', 6, 1),
+(37, '2024-04-21 05:26:09.761803', '6', 'Fast Food[Non-veg]', 3, '', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -280,7 +292,7 @@ CREATE TABLE `myapp_customuser` (
 --
 
 INSERT INTO `myapp_customuser` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `mobile`, `address`) VALUES
-(1, 'pbkdf2_sha256$600000$jJyKMVfCQ99wbR3KcxlDtQ$dhkZ63ConXCB46KN6NeOTLiAiKSENN3+vW0hjeJuAbo=', '2024-04-18 21:15:03.230435', 1, 'admin', '', '', 'shovanvsk@gmail.com', 1, 1, '2024-04-18 08:29:32.707190', '', ''),
+(1, 'pbkdf2_sha256$600000$jJyKMVfCQ99wbR3KcxlDtQ$dhkZ63ConXCB46KN6NeOTLiAiKSENN3+vW0hjeJuAbo=', '2024-04-21 05:22:26.961392', 1, 'admin', '', '', 'shovanvsk@gmail.com', 1, 1, '2024-04-18 08:29:32.707190', '', ''),
 (2, 'pbkdf2_sha256$600000$dvYckZBvqklodXbl82uRt6$Ctmd+AYuFggz8iJMDP+YoTBON+/04JTiYEoBD70Kr4g=', '2024-04-18 18:37:42.604380', 0, 'shovan', '', '', 'shovan.pal.mca24@heritageit.edu.in', 0, 1, '2024-04-18 08:41:21.819520', '', ''),
 (3, 'pbkdf2_sha256$600000$hAr64QuSP66HZUlUJspRv3$mbarNYqE0isbDFyMq2ObW1oqcqk8WJMEo2uVAmhyroQ=', '2024-04-18 18:38:15.295212', 0, 'shovan1', 'Shovan', 'Pal', 'draculavsk@gmail.com', 0, 1, '2024-04-18 08:48:14.930235', '', '');
 
@@ -328,12 +340,12 @@ CREATE TABLE `myapp_item` (
 --
 
 INSERT INTO `myapp_item` (`id`, `name`, `description`, `price`, `image`, `menu_id`) VALUES
-(2, 'Chicken Burger', 'na', '50.00', 'item_image/b1_Ts3jBLK.png', 6),
-(3, 'Vegetable Sandwich', 'Na', '40.00', 'item_image/vs.png', 10),
-(4, 'Chicken Tikka Pizza', 'na', '290.00', 'item_image/cp.png', 6),
+(2, 'Chicken Burger', 'na', '50.00', 'item_image/b1_Ts3jBLK.png', 14),
+(3, 'Vegetable Sandwich', 'Na', '40.00', 'item_image/vs.png', 13),
+(4, 'Chicken Tikka Pizza', 'na', '290.00', 'item_image/cp.png', 14),
 (5, 'Fried rice and Chili chicken', 'na', '250.00', 'item_image/fc.jpg', 8),
 (6, 'Chicken Noodls and Chilli chicken', 'na', '250.00', 'item_image/nc.jpg', 8),
-(7, 'Coca Cola', 'na', '35.00', 'item_image/cc.png', 11);
+(7, 'Coca Cola', 'na', '35.00', 'item_image/cc.png', 15);
 
 -- --------------------------------------------------------
 
@@ -352,10 +364,10 @@ CREATE TABLE `myapp_menu` (
 --
 
 INSERT INTO `myapp_menu` (`id`, `menu_name`, `menu_catagory`) VALUES
-(6, 'Fast Food', 'Non-veg'),
 (8, 'chinese', 'Non-veg'),
-(10, 'Fast Food', 'Veg'),
-(11, 'Soft Drinks', 'Drinks');
+(13, 'Fast-Food', 'Veg'),
+(14, 'Fast-Food', 'Non-veg'),
+(15, 'Soft-Drinks', 'Drinks');
 
 -- --------------------------------------------------------
 
@@ -506,7 +518,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -554,7 +566,7 @@ ALTER TABLE `myapp_item`
 -- AUTO_INCREMENT for table `myapp_menu`
 --
 ALTER TABLE `myapp_menu`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `myapp_order`
