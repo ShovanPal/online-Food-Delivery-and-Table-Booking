@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import book_table, booking_success
 
 urlpatterns = [
     path('', views.index,name='home-page'),
@@ -16,5 +17,7 @@ urlpatterns = [
     path("initiate-payment/", views.initiate_payment, name="initiate_payment"),
     path("payment-success/", views.payment_success, name="payment_success"),
     path("payment-failed/", views.payment_failed, name="payment_failed"),
-    path("order/", views.viewOrders, name="order-page"),   
+    path("order/", views.viewOrders, name="order-page"),
+    path('book', book_table, name='book_table'),
+    path('booking-success/', views.booking_success, name='booking_success'),
 ]

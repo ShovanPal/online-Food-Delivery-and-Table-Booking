@@ -1,7 +1,32 @@
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from django import forms
+from django.core.exceptions import ValidationError
+from django.utils import timezone
+from .models import Booking
+
+class BookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['name', 'email', 'phone_number', 'date', 'time', 'persons']
+
+    def clean_date(self):
+        date = self.cleaned_data['date']
+        today = timezone.now().date()
+        if date < today:
+            raise ValidationError("Date cannot be in the past")
+        if date > today + timezone.timedelta(days=30):
+            raise ValidationError("Date cannot be more than 30 days in the future")
+        return date
+
+    def clean_time(self):
+        time = self.cleaned_data['time']
+        if not (10 <= time.hour < 22):
+            raise ValidationError("Time must be between 10:00 AM and 10:00 PM")
+        return time
+
+
 
 class RegistrationForm(UserCreationForm):
     username = forms.CharField(

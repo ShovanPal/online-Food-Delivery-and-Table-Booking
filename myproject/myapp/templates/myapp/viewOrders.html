@@ -12,6 +12,7 @@
 <title>All Cart</title>
 </head>
 <body>
+    
     <div class="container">
         <h2 class="text-center">My Order</h2>
         <table class="table table-bordered">
@@ -23,17 +24,18 @@
                     <th>Total</th>
                 </tr>
             </thead>
-            <thead>
-                {% for i in cart_items %}
+            <tbody>
+                {% for order in cart_items %}
                 <tr>
-                    <td>{{i.product}}</td>
-                    <td>{{i.quantity}}</td>
-                    <td>{{i.date_ordered}}</td>
-                    <td>&#8377; {{ i.quantity | mul:item.item.price}}</td>
+                    <td>{{ order.product }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.date_ordered }}</td>
+                    <td>&#8377; {{ order.quantity|mul:order.product.price }}</td>
                 </tr>
                 {% endfor %}
-            </thead>
+            </tbody>
         </table>
+        
     </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>

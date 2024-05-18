@@ -50,3 +50,16 @@ class Order(models.Model):
     payment_status=models.CharField(max_length=255)
     payment_id=models.CharField(max_length=255)
     address=models.TextField()
+
+
+
+class Booking(models.Model):
+    name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=15)
+    email = models.EmailField()
+    persons = models.PositiveIntegerField()
+    date = models.DateField()
+    time = models.TimeField()
+
+    def __str__(self):
+        return f"Booking by {self.name} on {self.date} at {self.time}"

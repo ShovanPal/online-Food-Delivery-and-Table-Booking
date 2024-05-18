@@ -221,3 +221,19 @@ def viewOrders(request):
         return render(request, 'myapp/viewOrders.html', {'cart_items': cart_items})
     else:
         return redirect('/login')
+
+from .forms import BookingForm
+
+def book_table(request):
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('booking_success')  # Redirect to a success page
+    else:
+        form = BookingForm()
+    return render(request, 'book', {'form': form})
+
+def booking_success(request):
+    return render(request, 'myapp/booking_success.html')
+
