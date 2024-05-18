@@ -67,10 +67,10 @@
                       Chicken Burger
                     </h1>
                     <p>
-                      Get your delicious Chicken Burger at 70/-
+                       Non Veg.
                     </p>
                     <div class="btn-box">
-                      <a href="menu" class="btn1">
+                      <a href="" class="btn1">
                         Order Now
                       </a>
                     </div>
@@ -88,10 +88,10 @@
                       French Fries
                     </h1>
                     <p>
-                      Fesh French Frices only at 59/-
+                      Veg
                     </p>
                     <div class="btn-box">
-                      <a href="menu" class="btn1">
+                      <a href="" class="btn1">
                         Order Now
                       </a>
                     </div>
@@ -109,10 +109,10 @@
                       Margarito cheese burger
                     </h1>
                     <p>
-                     
+                     Non Veg.
                     </p>
                     <div class="btn-box">
-                      <a href="menu" class="btn1">
+                      <a href="" class="btn1">
                         Order Now
                       </a>
                     </div>
@@ -369,7 +369,7 @@
   
   
       <div class="btn-box">
-        <a href="menu">
+        <a href="">
           View More
         </a>
       </div>
@@ -377,6 +377,41 @@
   </section>
 
   <!-- end food section -->
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container  ">
+
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img src="{% static 'myapp/images/about-img.png'%}" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                We Are Feane
+              </h2>
+            </div>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in some form, by injected humour, or randomised words which don't look even slightly believable. If you
+              are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in
+              the middle of text. All
+            </p>
+            <a href="">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
 
   <!-- book section -->
   <section class="book_section layout_padding">
@@ -389,54 +424,46 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form_container">
-            <form method="post" action="{% url 'book_table' %}" novalidate>
-              {% csrf_token %}
+            <form action="">
               <div>
-                <input type="text" class="form-control" id="id_name" name="name" placeholder="Your Name" value="{{ form.name.value }}" required>
-                {% for error in form.name.errors %}
-                <span style="color: red;">{{ error }}</span>
-                {% endfor %}
+                <input type="text" class="form-control" placeholder="Your Name" />
               </div>
               <div>
-                <input type="text" class="form-control" id="id_phone_number" name="phone_number" placeholder="Phone Number" value="{{ form.phone_number.value }}" required>
-                {% for error in form.phone_number.errors %}
-                <span style="color: red;">{{ error }}</span>
-                {% endfor %}
+                <input type="text" class="form-control" placeholder="Phone Number" />
               </div>
               <div>
-                <input type="email" class="form-control" id="id_email" name="email" placeholder="Your Email" value="{{ form.email.value }}" required>
-                {% for error in form.email.errors %}
-                <span style="color: red;">{{ error }}</span>
-                {% endfor %}
+                <input type="email" class="form-control" placeholder="Your Email" />
               </div>
               <div>
-                <select class="form-control nice-select wide" id="id_persons" name="persons" required>
+                <select class="form-control nice-select wide">
                   <option value="" disabled selected>
                     How many persons?
                   </option>
-                  <option value="2" {% if form.persons.value == 2 %}selected{% endif %}>2</option>
-                  <option value="3" {% if form.persons.value == 3 %}selected{% endif %}>3</option>
-                  <option value="4" {% if form.persons.value == 4 %}selected{% endif %}>4</option>
-                  <option value="5" {% if form.persons.value == 5 %}selected{% endif %}>5</option>
+                  <option value="">
+                    2
+                  </option>
+                  <option value="">
+                    3
+                  </option>
+                  <option value="">
+                    4
+                  </option>
+                  <option value="">
+                    5
+                  </option>
+                  <option value="">
+                    6 to 10
+                  </option>
+                  <option value="">
+                    10 to 15
+                  </option>
                 </select>
-                {% for error in form.persons.errors %}
-                <span style="color: red;">{{ error }}</span>
-                {% endfor %}
               </div>
               <div>
-                <input type="date" class="form-control" id="id_date" name="date" value="{{ form.date.value }}" required>
-                {% for error in form.date.errors %}
-                <span style="color: red;">{{ error }}</span>
-                {% endfor %}
-              </div>
-              <div>
-                <input type="time" class="form-control" id="id_time" name="time" value="{{ form.time.value }}" required>
-                {% for error in form.time.errors %}
-                <span style="color: red;">{{ error }}</span>
-                {% endfor %}
+                <input type="date" class="form-control">
               </div>
               <div class="btn_box">
-                <button type="submit">
+                <button>
                   Book Now
                 </button>
               </div>
@@ -444,7 +471,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="map_container">
+          <div class="map_container ">
             <div id="googleMap"></div>
           </div>
         </div>
