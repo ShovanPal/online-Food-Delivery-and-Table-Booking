@@ -413,72 +413,82 @@
 
   <!-- end about section -->
 
-  <!-- book section -->
-  <section class="book_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Book A Table
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form_container">
-            <form action="">
-              <div>
-                <input type="text" class="form-control" placeholder="Your Name" />
-              </div>
-              <div>
-                <input type="text" class="form-control" placeholder="Phone Number" />
-              </div>
-              <div>
-                <input type="email" class="form-control" placeholder="Your Email" />
-              </div>
-              <div>
-                <select class="form-control nice-select wide">
-                  <option value="" disabled selected>
-                    How many persons?
-                  </option>
-                  <option value="">
-                    2
-                  </option>
-                  <option value="">
-                    3
-                  </option>
-                  <option value="">
-                    4
-                  </option>
-                  <option value="">
-                    5
-                  </option>
-                  <option value="">
-                    6 to 10
-                  </option>
-                  <option value="">
-                    10 to 15
-                  </option>
-                </select>
-              </div>
-              <div>
-                <input type="date" class="form-control">
-              </div>
-              <div class="btn_box">
-                <button>
-                  Book Now
-                </button>
-              </div>
-            </form>
-          </div>
+ <!-- book section -->
+ <section class="book_section layout_padding">
+  <div class="container">
+    <div class="heading_container">
+      <h2>
+        Book A Table
+      </h2>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form_container">
+          <form method="post" action="{% url 'book_table' %}" novalidate>
+            {% csrf_token %}
+            <div>
+              <input type="text" class="form-control" id="id_name" name="name" placeholder="Your Name" value="{{ form.name.value }}" required>
+              {% for error in form.name.errors %}
+              <span style="color: red;">{{ error }}</span>
+              {% endfor %}
+            </div>
+            <div>
+              <input type="text" class="form-control" id="id_phone_number" name="phone_number" placeholder="Phone Number" value="{{ form.phone_number.value }}" required>
+              {% for error in form.phone_number.errors %}
+              <span style="color: red;">{{ error }}</span>
+              {% endfor %}
+            </div>
+            <div>
+              <input type="email" class="form-control" id="id_email" name="email" placeholder="Your Email" value="{{ form.email.value }}" required>
+              {% for error in form.email.errors %}
+              <span style="color: red;">{{ error }}</span>
+              {% endfor %}
+            </div>
+            <div>
+              <select class="form-control nice-select wide" id="id_persons" name="persons" required>
+                <option value="" disabled selected>
+                  How many persons?
+                </option>
+                <option value="2" {% if form.persons.value == 2 %}selected{% endif %}>2</option>
+                <option value="3" {% if form.persons.value == 3 %}selected{% endif %}>3</option>
+                <option value="4" {% if form.persons.value == 4 %}selected{% endif %}>4</option>
+                <option value="5" {% if form.persons.value == 5 %}selected{% endif %}>5</option>
+              </select>
+              {% for error in form.persons.errors %}
+              <span style="color: red;">{{ error }}</span>
+              {% endfor %}
+            </div>
+            <div>
+              <input type="date" class="form-control" id="id_date" name="date" value="{{ form.date.value }}" required>
+              {% for error in form.date.errors %}
+              <span style="color: red;">{{ error }}</span>
+              {% endfor %}
+            </div>
+            <div>
+              <input type="time" class="form-control" id="id_time" name="time" value="{{ form.time.value }}" required>
+              {% for error in form.time.errors %}
+              <span style="color: red;">{{ error }}</span>
+              {% endfor %}
+            </div>
+            <div class="btn_box">
+              <button type="submit">
+                Book Now
+              </button>
+            </div>
+          </form>
         </div>
-        <div class="col-md-6">
-          <div class="map_container ">
-            <div id="googleMap"></div>
+      </div>
+      <div class="col-md-6">
+        <div class="map_container">
+          <div id="googleMap">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.6708308827874!2d88.41660651550697!3d22.5172004852054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0273f58b9feec5%3A0x30f8067b73c45d8!2sThe%20Heritage%20College!5e0!3m2!1sen!2sin!4v1621764396657!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <!-- end book section -->
+  </div>
+</section>
+<!-- end book section -->
 
   <!-- client section -->
 
@@ -633,9 +643,7 @@
   <!-- custom js -->
   <script src="{% static 'myapp/js/custom.js'%}"></script>
   <!-- Google Map -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
-  </script>
-  <!-- End Google Map -->
+ <script src="{% static 'myapp/js/custom.js' %}"></script>
 
 </body>
 
